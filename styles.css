@@ -1,0 +1,371 @@
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #101713;
+  font-family: system-ui, sans-serif;
+}
+
+#game-shell {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+#game {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+#minimap {
+  position: absolute;
+  z-index: 2;
+  left: 12px;
+  bottom: max(14px, env(safe-area-inset-bottom));
+  width: 240px;
+  height: 180px;
+  border: 3px solid rgba(231, 222, 178, 0.9);
+  border-radius: 8px;
+  background: #10242b;
+  image-rendering: pixelated;
+  box-shadow: 0 3px 16px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+}
+
+#fullscreen-button {
+  position: absolute;
+  z-index: 2;
+  top: 12px;
+  right: 12px;
+  padding: 10px 14px;
+  border: 2px solid #96dca0;
+  border-radius: 8px;
+  color: #f5fff5;
+  background: #224630;
+  font: 600 14px system-ui, sans-serif;
+  cursor: pointer;
+}
+
+#fullscreen-button:hover {
+  background: #326340;
+}
+
+#fps-counter {
+  position: absolute;
+  z-index: 3;
+  top: 64px;
+  right: 12px;
+  min-width: 82px;
+  padding: 7px 10px;
+  border: 1px solid rgba(202, 224, 184, 0.6);
+  border-radius: 8px;
+  color: #eff5e9;
+  background: rgba(20, 30, 24, 0.86);
+  font: 700 14px ui-monospace, monospace;
+  text-align: center;
+  pointer-events: none;
+}
+
+.game-button {
+  position: absolute;
+  z-index: 2;
+  top: 88px;
+  min-height: 42px;
+  padding: 9px 14px;
+  border: 1px solid #b7c4ad;
+  border-radius: 8px;
+  color: #f5fff5;
+  background: rgba(30, 42, 34, 0.92);
+  font: 700 15px system-ui, sans-serif;
+  cursor: pointer;
+}
+
+#save-button {
+  left: 12px;
+}
+
+#menu-button {
+  left: 138px;
+}
+
+#main-menu {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(9, 17, 13, 0.78);
+  backdrop-filter: blur(5px);
+}
+
+.menu-card {
+  width: min(100%, 560px);
+  max-height: min(94vh, 850px);
+  overflow-y: auto;
+  padding: 30px;
+  border: 1px solid rgba(194, 223, 179, 0.35);
+  border-radius: 18px;
+  color: #f3f5e8;
+  background: #1b2b21;
+  box-shadow: 0 24px 90px rgba(0, 0, 0, 0.45);
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: #b9d19e;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+}
+
+.menu-card h1 {
+  margin: 0 0 8px;
+  font-size: clamp(28px, 6vw, 40px);
+  color: #f3f5e8;
+}
+
+.menu-copy {
+  margin: 10px 0 22px;
+  color: #ccd6c7;
+}
+
+.menu-card label {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.menu-card label span {
+  color: #aebba9;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+#seed-input,
+#world-name-input,
+.menu-select {
+  width: 100%;
+  min-height: 46px;
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border: 1px solid #61725e;
+  border-radius: 9px;
+  color: #f5fff5;
+  background: #111c15;
+  font: 16px system-ui, sans-serif;
+}
+
+.menu-card button {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 9px;
+  border: 1px solid #65775e;
+  border-radius: 9px;
+  color: #eff5e9;
+  background: #344936;
+  font: 700 16px system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.menu-card button.primary-button {
+  border-color: #a7cf75;
+  color: #152013;
+  background: #b4d889;
+}
+
+.menu-card button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+#menu-status {
+  min-height: 20px;
+  margin: 13px 0 0;
+  color: #f2d98a;
+  font-size: 13px;
+}
+
+.menu-card h2 {
+  margin: 22px 0 8px;
+  color: #f3f5e8;
+  font-size: 20px;
+}
+
+#saved-worlds {
+  display: grid;
+  gap: 8px;
+  max-height: 240px;
+  overflow: auto;
+}
+
+.empty-saves {
+  margin: 8px 0;
+  color: #ccd6c7;
+  text-align: center;
+}
+
+.saved-world {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid rgba(194, 223, 179, 0.35);
+  border-radius: 8px;
+  background: rgba(17, 28, 21, 0.72);
+}
+
+.saved-world-details {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.saved-world-details strong,
+.saved-world-details span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.saved-world-details span {
+  color: #aebba9;
+  font-size: 11px;
+}
+
+.saved-world-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 5px;
+}
+
+.menu-card .saved-world-actions button {
+  width: auto;
+  min-height: 42px;
+  margin: 0;
+  padding: 2px 12px;
+  font-size: 13px;
+}
+
+.menu-card .saved-world-actions .delete-save {
+  min-width: 36px;
+  padding: 0;
+  border: 1px solid #a65b50;
+  border-radius: 7px;
+  background: #633b35;
+  font-size: 22px;
+}
+
+#loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: #101713;
+  font-size: 20px;
+}
+
+#loading.hidden {
+  display: none;
+}
+
+#mobile-controls {
+  position: absolute;
+  z-index: 2;
+  right: 12px;
+  bottom: max(14px, env(safe-area-inset-bottom));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: min(92vw, 440px);
+  gap: 10px;
+}
+
+#building-select {
+  flex: 1 0 100%;
+  min-height: 46px;
+  padding: 8px 12px;
+  border: 2px solid #d8c986;
+  border-radius: 10px;
+  color: #fff9dd;
+  background: rgba(35, 45, 34, 0.96);
+  font: 700 15px system-ui, sans-serif;
+}
+
+#mobile-controls button {
+  min-height: 60px;
+  padding: 12px 18px;
+  border: 2px solid #d8c986;
+  border-radius: 12px;
+  color: #fff9dd;
+  background: rgba(45, 55, 38, 0.94);
+  font: 700 16px system-ui, sans-serif;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+#mobile-controls button:disabled {
+  opacity: 0.48;
+}
+
+@media (pointer: coarse), (max-width: 720px) {
+  #minimap {
+    left: 8px;
+    bottom: max(8px, env(safe-area-inset-bottom));
+    width: min(35vw, 190px);
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+  #mobile-controls {
+    right: 10px;
+    bottom: max(10px, env(safe-area-inset-bottom));
+    gap: 7px;
+  }
+
+  #fullscreen-button {
+    width: 48px;
+    height: 44px;
+    padding: 0;
+    overflow: hidden;
+    font-size: 0;
+  }
+
+  #fullscreen-button::after {
+    content: "⛶";
+    font-size: 25px;
+  }
+}
+
+@media (max-width: 380px) {
+  #mobile-controls {
+    gap: 6px;
+  }
+
+  #mobile-controls button {
+    min-height: 56px;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  #building-select {
+    min-height: 42px;
+    font-size: 13px;
+  }
+}

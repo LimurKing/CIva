@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Forest Settlement</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <main id="game-shell">
+      <canvas id="game" aria-label="Игра: лесное поселение"></canvas>
+      <canvas id="minimap" width="240" height="180" aria-label="Миникарта: исследуйте мир, чтобы открыть его" hidden></canvas>
+      <button id="fullscreen-button" type="button" aria-label="Переключить полноэкранный режим">На весь экран</button>
+      <div id="fps-counter" role="status" hidden>FPS: --</div>
+      <button id="save-button" class="game-button" type="button" hidden>Сохранить</button>
+      <button id="menu-button" class="game-button" type="button" hidden>Меню</button>
+      <nav id="mobile-controls" aria-label="Игровое управление" hidden>
+        <select id="building-select" aria-label="Выбрать постройку">
+          <option value="house">Дом · 10 дерева</option>
+          <option value="tower">Башня · 18 дерева, 5 камня</option>
+          <option value="barracks">Казарма · 24 дерева, 8 камня</option>
+          <option value="archery">Стрельбище · 20 дерева, 5 камня</option>
+          <option value="wall">Стена · 4 дерева</option>
+        </select>
+        <button id="harvest-button" type="button">Рубить рядом</button>
+        <button id="build-button" type="button">Построить</button>
+        <button id="demolish-button" type="button" aria-pressed="false">Снос: выкл.</button>
+        <button id="builder-button" type="button">Нанять строителя · 5 золота</button>
+        <button id="rotate-wall-button" type="button" hidden>Стена: горизонтально</button>
+      </nav>
+      <section id="main-menu" hidden>
+        <div class="menu-card">
+          <p class="eyebrow">TINY SWORDS · FOREST SETTLEMENT</p>
+          <h1>Лесное поселение</h1>
+          <p class="menu-copy">Создайте случайный мир или введите seed. Прогресс сохраняется в браузере.</p>
+          <label for="world-name-input">Название мира</label>
+          <input id="world-name-input" type="text" maxlength="32" placeholder="Например: Зелёная долина" autocomplete="off" />
+          <label for="main-house-color">Цвет главного дома</label>
+          <select id="main-house-color" class="menu-select">
+            <option value="yellow">Жёлтый</option>
+            <option value="blue">Синий</option>
+            <option value="purple">Фиолетовый</option>
+          </select>
+          <label for="seed-input">Seed мира <span>(необязательно)</span></label>
+          <input id="seed-input" type="text" maxlength="40" placeholder="Пусто — случайная генерация" autocomplete="off" />
+          <button id="new-game-button" class="primary-button" type="button">Создать новую игру</button>
+          <h2>Сохранённые миры</h2>
+          <div id="saved-worlds" aria-live="polite"></div>
+          <p id="menu-status" role="status"></p>
+        </div>
+      </section>
+      <div id="loading">Загружаю игру…</div>
+    </main>
+  </body>
+</html>
