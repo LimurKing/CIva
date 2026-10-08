@@ -460,7 +460,7 @@ async function loadSheet(path, frameWidth = 192, frameHeight = 192, size = WORKE
 }
 
 function asset(...parts) {
-  return ["Tiny Swords (Free Pack)", ...parts].join("/");
+  return ["Assets", ...parts].join("/");
 }
 
 async function loadAssets() {
@@ -2039,6 +2039,6 @@ loadAssets().then((loadedArt) => {
   const fileProtocol = window.location.protocol === "file:";
   loading.textContent = fileProtocol
     ? `${error.message}. Запустите игру через веб-сервер, а не открывайте index.html напрямую.`
-    : `${error.message}. Проверьте, что папка «Tiny Swords (Free Pack)» загружена рядом с index.html, а имена папок и файлов совпадают по регистру.`;
+    : `${error.message}. Проверьте, что папка «Assets» загружена рядом с index.html, а имена папок и файлов совпадают по регистру.`;
   console.error(error);
 });

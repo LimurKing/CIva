@@ -45,7 +45,7 @@ def toggle_fullscreen():
 
 # Load the Tiny Swords sprites from the asset pack.
 asset_dir = Path(__file__).resolve().parent
-pack_dir = asset_dir / "Tiny Swords (Free Pack)"
+pack_dir = asset_dir / "Assets"
 
 
 def load_frames(relative_path, frame_size=(192, 192), output_size=None):
